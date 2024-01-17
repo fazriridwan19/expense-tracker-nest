@@ -6,14 +6,10 @@ import {
   Patch,
   Param,
   Delete,
-  Req,
-  Res,
-  ParseIntPipe,
 } from '@nestjs/common';
 import { ExpenseService } from './expense.service';
 import { CreateExpenseDto } from './dto/create-expense.dto';
 import { UpdateExpenseDto } from './dto/update-expense.dto';
-import { Request, Response } from 'express';
 import { CurrentUser } from 'src/auth/decorators/current-user.decorator';
 import { User } from 'src/user/entities/user.entity';
 
