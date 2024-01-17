@@ -26,9 +26,13 @@ export class WalletService {
   }
 
   async findOne(user: User, id: number): Promise<Wallet> {
-    return await this.walletRepository.findOne({
+    const wallet = await this.walletRepository.findOne({
       where: { id, user },
     });
+    if (!wallet) {
+      throw new NotFoundException('Wallet is not found');
+    }
+    return wallet;
   }
 
   async update(user: User, id: number, updateWalletDto: UpdateWalletDto) {
