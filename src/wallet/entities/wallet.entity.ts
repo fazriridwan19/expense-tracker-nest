@@ -1,9 +1,11 @@
+import { ExpenseTransaction } from 'src/expense-transaction/entities/expense-transaction.entity';
 import { User } from 'src/user/entities/user.entity';
 import {
   Column,
   Entity,
   JoinColumn,
   ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -21,4 +23,11 @@ export class Wallet {
   @ManyToOne(() => User, (user) => user.wallets)
   @JoinColumn({ name: 'user' })
   user: User;
+
+  @OneToMany(
+    () => ExpenseTransaction,
+    (expenseTransaction) => expenseTransaction.wallet,
+    { cascade: true },
+  )
+  expenseTransactions: ExpenseTransaction[];
 }

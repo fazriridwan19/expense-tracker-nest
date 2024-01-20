@@ -3,10 +3,15 @@ import { ExpenseService } from './expense.service';
 import { ExpenseController } from './expense.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Expense } from './entities/expense.entity';
-import { UserModule } from 'src/user/user.module';
+import { WalletModule } from 'src/wallet/wallet.module';
+import { ExpenseTransactionModule } from 'src/expense-transaction/expense-transaction.module';
 
 @Module({
-  imports: [UserModule, TypeOrmModule.forFeature([Expense])],
+  imports: [
+    ExpenseTransactionModule,
+    WalletModule,
+    TypeOrmModule.forFeature([Expense]),
+  ],
   controllers: [ExpenseController],
   providers: [ExpenseService],
 })

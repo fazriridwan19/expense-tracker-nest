@@ -8,6 +8,10 @@ import { User } from './user/entities/user.entity';
 import { Expense } from './expense/entities/expense.entity';
 import { ConfigModule } from '@nestjs/config';
 import { Wallet } from './wallet/entities/wallet.entity';
+import { ExpenseTransactionModule } from './expense-transaction/expense-transaction.module';
+import { ExpenseTransaction } from './expense-transaction/entities/expense-transaction.entity';
+import { StatusModule } from './status/status.module';
+import { Status } from './status/entities/status.entity';
 
 @Module({
   imports: [
@@ -22,13 +26,15 @@ import { Wallet } from './wallet/entities/wallet.entity';
       password: process.env.DB_PASSWORD,
       database: process.env.DB_NAME,
       schema: process.env.DB_SCHEMA,
-      entities: [User, Expense, Wallet],
+      entities: [User, Expense, Wallet, ExpenseTransaction, Status],
       synchronize: true,
     }),
     AuthModule,
     UserModule,
     WalletModule,
     ExpenseModule,
+    ExpenseTransactionModule,
+    StatusModule,
   ],
 })
 export class AppModule {}

@@ -46,7 +46,11 @@ export class ExpenseController {
   }
 
   @Delete(':id')
-  async remove(@Param('id') id: string, @CurrentUser() user: User) {
-    return this.expenseService.remove(user, +id);
+  async remove(
+    @Param('id') id: string,
+    @CurrentUser() user: User,
+    @Body() updateExpenseDto: UpdateExpenseDto,
+  ) {
+    return this.expenseService.remove(user, +id, updateExpenseDto);
   }
 }
